@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#CDEBFF">
+<title>小草原日記</title>
+<style>
+  :root { --cream: #FFF6E3; --ink: #5B4B6E; }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #CDEBFF; overscroll-behavior: none; }
+  body { font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", system-ui, sans-serif; color: var(--ink);
+         -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent; }
+  #game { position: fixed; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; }
+  .pill { position: fixed; background: rgba(255, 246, 227, .82); border-radius: 999px; padding: 8px 16px;
+          box-shadow: 0 3px 12px rgba(122, 111, 181, .18); pointer-events: none; font-size: 15px; letter-spacing: .06em; }
+  #title { top: calc(12px + env(safe-area-inset-top)); left: calc(12px + env(safe-area-inset-left)); font-weight: 700; }
+  #title small { font-weight: 400; opacity: .6; margin-left: 6px; font-size: 12px; }
+  #hint { left: 50%; bottom: calc(28px + env(safe-area-inset-bottom)); transform: translateX(-50%); white-space: nowrap;
+          transition: opacity 1.2s ease; }
+  #hint.hide { opacity: 0; }
+  #stick { position: fixed; width: 110px; height: 110px; margin: -55px 0 0 -55px; border-radius: 50%;
+           background: rgba(255, 246, 227, .35); border: 2px solid rgba(255, 246, 227, .7); pointer-events: none;
+           opacity: 0; transition: opacity .15s; }
+  #stick.on { opacity: 1; }
+  #knob { position: absolute; left: 50%; top: 50%; width: 46px; height: 46px; margin: -23px 0 0 -23px; border-radius: 50%;
+          background: rgba(255, 246, 227, .95); box-shadow: 0 2px 8px rgba(122, 111, 181, .35); }
+  #fps { top: calc(12px + env(safe-area-inset-top)); right: 12px; font-size: 12px; display: none; }
+  #err { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; text-align: center;
+         padding: 24px; font-size: 16px; line-height: 1.7; }
+</style>
+<script type="importmap">
+{ "imports": { "three": "./vendor/three.module.min.js" } }
+</script>
+</head>
+<body>
+<canvas id="game"></canvas>
+<div id="title" class="pill">小草原日記<small>M0</small></div>
+<div id="fps" class="pill"></div>
+<div id="hint" class="pill">拖曳畫面或按 WASD / 方向鍵移動 · 雙指或滾輪縮放</div>
+<div id="stick"><div id="knob"></div></div>
+<div id="err">這個瀏覽器好像不支援 3D 畫面(WebGL)。<br>請換用最新版 Chrome、Safari 或 Edge 試試。</div>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
